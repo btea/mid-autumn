@@ -1,43 +1,46 @@
 <template>
     <div class="send-msg-box">
-        <input type="text" class="xinyuan"/>
+        <input type="text" class="xinyuan" @keyup.enter="sendMsg" />
         <div class="icon" @click="sendMsg">
             <send-icon color="aqua"></send-icon>
         </div>
     </div>
 </template>
 <script lang="ts" setup>
-import {ref} from 'vue'
-import SendIcon from './SendIcon.vue'
-const word = ref('')
+import { ref } from 'vue';
+import SendIcon from './SendIcon.vue';
+const word = ref('');
 const sendMsg = () => {
     if (!word.value.length) {
-        console.log('请先输入你的愿望！')
-        return 
+        console.log('请先输入你的愿望！');
+        return;
     }
-}
+};
 </script>
 <style lang="less" scoped>
-.send-msg-box{
+.send-msg-box {
     position: fixed;
     left: 50%;
     bottom: 30px;
     height: 35px;
     transform: translateX(-50%);
-    
-    .xinyuan{
+
+    .xinyuan {
         outline: none;
         height: 35px;
         width: 300px;
         border-radius: 3px;
-        border-color: rgba(0, 0, 0, .2);
+        border: none;
         padding: 0 40px 0 10px;
-        &:focus{
-            box-shadow: 0px 0px 5px rgba(102, 204, 255, .2);
+        background: rgba(102, 204, 255, 0.5);
+        opacity: 0.3;
+        &:focus {
+            box-shadow: 0px 0px 10px rgba(102, 204, 255, 0.5);
             border-color: transparent;
+            opacity: 0.8;
         }
     }
-    .icon{
+    .icon {
         position: absolute;
         right: 10px;
         top: 5px;
