@@ -1,0 +1,28 @@
+{
+    "name": "mid-autumn",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "vite"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/btea/mid-autumn.git"
+    },
+    "author": "btea",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/btea/mid-autumn/issues"
+    },
+    "homepage": "https://github.com/btea/mid-autumn#readme",
+    "dependencies": {
+        "vue": "^3.2.21"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^1.9.4",
+        "less": "^4.1.2",
+        "vite": "^2.6.13"
+    }
+}
