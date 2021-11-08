@@ -1,5 +1,4 @@
 <template>
-    <h1>hello wolrd</h1>
     <Panel></Panel>
 </template>
 <script lang="ts" setup>
