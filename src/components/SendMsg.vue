@@ -1,6 +1,6 @@
 <template>
     <div class="send-msg-box">
-        <input type="text" class="xinyuan" @keyup.enter="sendMsg" />
+        <input type="text" class="xinyuan" v-model="word" @keyup.enter="sendMsg" />
         <div class="icon" @click="sendMsg">
             <send-icon color="aqua"></send-icon>
         </div>
@@ -9,12 +9,15 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import SendIcon from './SendIcon.vue';
+
+const emit = defineEmits(['sendMsg'])
 const word = ref('');
 const sendMsg = () => {
-    if (!word.value.length) {
-        console.log('请先输入你的愿望！');
+    if (!word.value) {
+        console.log('%c请先输入你的愿望！', 'color: rgba(102, 204, 255, .3)');
         return;
     }
+    emit('sendMsg', word.value)
 };
 </script>
 <style lang="less" scoped>
@@ -23,8 +26,9 @@ const sendMsg = () => {
     left: 50%;
     bottom: 30px;
     height: 35px;
+    opacity: 0;
+    transition: opacity .5s;
     transform: translateX(-50%);
-
     .xinyuan {
         outline: none;
         height: 35px;
