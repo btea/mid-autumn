@@ -1,7 +1,8 @@
 <template>
     <div ref="con" class="container" @mousemove="judgePosition">
-        <template v-for="msg in msgList">
-            <mid-autumn :msg="msg"></mid-autumn>
+        <Moon />
+        <template v-for="msgObj in msgList">
+            <mid-autumn :msg="msgObj" @removeFire="removeFire"></mid-autumn>
         </template>
         <send-msg ref="msg" @sendMsg="addMsg"></send-msg>
     </div>
@@ -10,11 +11,15 @@
 import { ref, onMounted } from 'vue';
 import SendMsg from './components/SendMsg.vue';
 import MidAutumn from './components/MidAutumn.vue';
+import Moon from './components/Moon.vue';
 
-const msgList = ref([]);
+const msgList = ref<{ msg: String; time: Number }[]>([]);
 const addMsg = (msg) => {
     console.log('你的愿望是：%c' + msg, 'color: orange;');
-    msgList.value.push(msg);
+    msgList.value.push({
+        msg,
+        time: Date.now()
+    });
 };
 // const msg = ref(null);
 const con = ref(null);
@@ -28,6 +33,13 @@ const judgePosition = (e) => {
         msgBox.style.opacity = '0';
     }
 };
+
+const removeFire = (mesg) => {
+    console.log(mesg);
+    const i = msgList.value.findIndex(mesg);
+    msgList.value.splice(i, 1);
+};
+
 onMounted(() => {
     // console.log(msg.value); // 拿不到组件的引用
     // console.log(con.value); // 能拿到html标签的引用
@@ -39,6 +51,7 @@ onMounted(() => {
 <style lang="less" scoped>
 .container {
     height: 100%;
-    background: linear-gradient(213deg, #ffba00c7, transparent);
+    // background: linear-gradient(213deg, #ffba00c7, transparent);
+    background-color: black;
 }
 </style>

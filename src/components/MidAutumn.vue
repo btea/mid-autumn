@@ -9,14 +9,10 @@ import { computed, ref, onMounted } from 'vue';
 import Fire from './Fire.vue';
 import { getRandom, getColor } from '../utils/random';
 
+const emit = defineEmits(['removeFire']);
 // 接收props
-const props = defineProps({
-    msg: {
-        type: String,
-        default: ''
-    }
-});
-const text = props.msg;
+const props = defineProps(['msg']);
+const text = props.msg.msg;
 
 /**
  * 随机生成水平方向位置
@@ -27,8 +23,8 @@ const text = props.msg;
  *
  */
 const left = getRandom(100, 0, true);
-// const top = window.innerHeight + 300;
-const top = 300;
+const top = window.innerHeight + 300;
+// const top = 300;
 
 const options = ref({
     opacity: 0,
@@ -50,7 +46,10 @@ onMounted(() => {
     options.value.opacity = 1;
     timer = window.setInterval(() => {
         if (options.value.y > top) {
-            window.clearInterval(timer);
+            // window.clearInterval(timer);
+            options.value.x = 0;
+            options.value.y = 0;
+            // emit('removeFire', props.msg);
         }
         options.value.y += options.value.y_s;
         options.value.x += options.value.x_s;
@@ -59,7 +58,7 @@ onMounted(() => {
 </script>
 <style lang="less" scoped>
 .mid-autumn {
-    position: fixed;
+    position: absolute;
     top: 100%;
     width: 40px;
     // height: 200px;
@@ -68,5 +67,7 @@ onMounted(() => {
     border-radius: 3px;
     background: rgba(94, 30, 42, 0.6);
     color: #fff;
+    z-index: 10;
+    will-change: transform;
 }
 </style>
