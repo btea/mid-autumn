@@ -14,10 +14,10 @@
     background: #fff;
     box-shadow: 0 0 20px 20px rgba(255, 255, 255, 0.2);
     overflow: hidden;
-    .fog{
+    .fog {
         width: 500px;
         height: 200px;
-        background: radial-gradient(#000000ba, transparent);
+        background: radial-gradient(#000000ba 0%, transparent 50%);
         position: relative;
         top: -50px;
         transform: translateX(-400px);
@@ -25,10 +25,10 @@
     }
 }
 @keyframes move {
-    0%{
+    0% {
         transform: translateX(-400px);
     }
-    100%{
+    100% {
         transform: translateX(0);
     }
 }

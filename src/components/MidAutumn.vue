@@ -23,8 +23,8 @@ const text = props.msg.msg;
  *
  */
 const left = getRandom(100, 0, true);
-// const top = window.innerHeight + 300;
-const top = 100;
+const top = window.innerHeight + 300;
+// const top = 100;
 
 const options = ref({
     opacity: 0,
@@ -41,21 +41,23 @@ const style = computed(() => {
         // zIndex: getRandom(1000, 1, true)
     };
 });
-let timer: number;
+const moveFire = () => {
+    if (options.value.y > top) {
+        cancelAnimationFrame(reqId);
+        // 重新从底部升起
+        // options.value.x = 0;
+        // options.value.y = 0;
+        // 移除当前信息
+        emit('removeFire', props.msg.time);
+    }
+    options.value.y += options.value.y_s;
+    options.value.x += options.value.x_s;
+    reqId = requestAnimationFrame(moveFire);
+};
+let reqId: number;
 onMounted(() => {
     options.value.opacity = 1;
-    timer = window.setInterval(() => {
-        if (options.value.y > top) {
-            window.clearInterval(timer);
-            // 重新从底部升起
-            // options.value.x = 0;
-            // options.value.y = 0;
-            // 移除当前信息
-            emit('removeFire', props.msg.time);
-        }
-        options.value.y += options.value.y_s;
-        options.value.x += options.value.x_s;
-    }, 1000 / 60);
+    reqId = requestAnimationFrame(moveFire);
 });
 </script>
 <style lang="less" scoped>
