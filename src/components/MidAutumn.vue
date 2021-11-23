@@ -5,7 +5,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue';
+import { computed, ref, unref, onMounted } from 'vue';
 import Fire from './Fire.vue';
 import { getRandom, getColor } from '../utils/random';
 
@@ -16,15 +16,15 @@ const text = props.msg.msg;
 
 /**
  * 随机生成水平方向位置
- * 垂直上升的速度固定，水平方向可能根据风向不同有一定的偏移
- * 水平风向可能会随着风动进行不同的左右偏移
- * 在灯罩里添加的火焰也是活动的，可以随着风向进行偏移
- * 灯默认的不透明度为0，随着升高逐渐清晰可见
+ * []垂直上升的速度固定，水平方向可能根据风向不同有一定的偏移
+ * []水平风向可能会随着风动进行不同的左右偏移
+ * []在灯罩里添加的火焰也是活动的，可以随着风向进行偏移
+ * []灯默认的不透明度为0，随着升高逐渐清晰可见
  *
  */
 const left = getRandom(100, 0, true);
-const top = window.innerHeight + 300;
-// const top = 300;
+// const top = window.innerHeight + 300;
+const top = 100;
 
 const options = ref({
     opacity: 0,
@@ -41,15 +41,17 @@ const style = computed(() => {
         // zIndex: getRandom(1000, 1, true)
     };
 });
-let timer;
+let timer: number;
 onMounted(() => {
     options.value.opacity = 1;
     timer = window.setInterval(() => {
         if (options.value.y > top) {
-            // window.clearInterval(timer);
-            options.value.x = 0;
-            options.value.y = 0;
-            // emit('removeFire', props.msg);
+            window.clearInterval(timer);
+            // 重新从底部升起
+            // options.value.x = 0;
+            // options.value.y = 0;
+            // 移除当前信息
+            emit('removeFire', props.msg.time);
         }
         options.value.y += options.value.y_s;
         options.value.x += options.value.x_s;
@@ -68,6 +70,5 @@ onMounted(() => {
     background: rgba(94, 30, 42, 0.6);
     color: #fff;
     z-index: 10;
-    will-change: transform;
 }
 </style>

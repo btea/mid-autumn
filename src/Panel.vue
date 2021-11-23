@@ -34,10 +34,8 @@ const judgePosition = (e) => {
     }
 };
 
-const removeFire = (mesg) => {
-    console.log(mesg);
-    const i = msgList.value.findIndex(mesg);
-    msgList.value.splice(i, 1);
+const removeFire = (time: number) => {
+    msgList.value = msgList.value.filter(item => item.time !== time)
 };
 
 onMounted(() => {
