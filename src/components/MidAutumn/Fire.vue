@@ -5,7 +5,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { getRandom } from '../utils/random';
+import { getRandom } from '../../utils/random';
 const points = new Array(100).fill(1).map((item) => {
     const w = getRandom(14, 6, true);
     const obj = {

@@ -1,17 +1,13 @@
 <template>
     <div ref="con" class="container" @mousemove="judgePosition">
-        <Moon />
-        <template v-for="msgObj in msgList">
-            <mid-autumn :msg="msgObj" @removeFire="removeFire"></mid-autumn>
-        </template>
+        <MidAu :msg-list="msgList" @remove="removeFire" />
         <send-msg ref="msg" @sendMsg="addMsg"></send-msg>
     </div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import SendMsg from './components/SendMsg.vue';
-import MidAutumn from './components/MidAutumn.vue';
-import Moon from './components/Moon.vue';
+import MidAu from './components/MidAutumn/Index.vue'
 
 const msgList = ref<{ msg: String; time: Number }[]>([]);
 const addMsg = (msg) => {

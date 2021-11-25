@@ -5,9 +5,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, unref, onMounted } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import Fire from './Fire.vue';
-import { getRandom, getColor } from '../utils/random';
+import { getRandom } from '../../utils/random';
 
 const emit = defineEmits(['removeFire']);
 // 接收props
