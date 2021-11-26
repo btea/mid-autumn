@@ -1,9 +1,12 @@
 export function getFestival(): String {
     const date = getDateStr();
     if (date === '08-15') {
-        return 'mid-autumn';
+        return 'MidAutumn';
     }
-    return 'no';
+    if (date === '01-01') {
+        return 'NewYear';
+    }
+    return 'CustomDay';
 }
 
 function getDateStr(): String {
