@@ -49,6 +49,7 @@ const moveFire = () => {
         // options.value.y = 0;
         // 移除当前信息
         emit('removeFire', props.msg.time);
+        return
     }
     options.value.y += options.value.y_s;
     options.value.x += options.value.x_s;
