@@ -6,6 +6,9 @@ export function getFestival(): String {
     if (date === '01-01') {
         return 'NewYear';
     }
+    if (date === '05-05') {
+        return 'DuanWu';
+    }
     return 'CustomDay';
 }
 

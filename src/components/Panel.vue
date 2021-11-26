@@ -5,16 +5,16 @@
 </template>
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
-import {getFestival} from './utils/getFestival'
+import {getFestival} from '../utils/getFestival'
 const name = getFestival()
 
 // 采用此种方法动态加载会出现vue的警告，但似乎还是渲染出来了
 // let activeDay = shallowRef('')
-// import(`./components/${name}/Index.vue`).then(tem => {
+// import(`./${name}/Index.vue`).then(tem => {
 //     activeDay.value = tem.default
 // })
 const asyncCom = defineAsyncComponent(() => {
-    return import(`./components/${name}/Index.vue`)
+    return import(`./${name}/Index.vue`)
 })
 </script>
 <style lang="less" scoped>

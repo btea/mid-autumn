@@ -2,7 +2,7 @@
     <Panel></Panel>
 </template>
 <script lang="ts" setup>
-import Panel from './Panel.vue'
+import Panel from './components/Panel.vue'
 </script>
 <style lang="less" scoped>
 h1{
