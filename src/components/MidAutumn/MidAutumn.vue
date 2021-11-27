@@ -1,6 +1,9 @@
 <template>
     <div class="mid-autumn" :style="style">
-        <Fire style="position: absolute; left: -30px; top: -200px; transform: scale(0.5)" />
+        <div class="sky-latern">
+            <LaternVue />
+        </div>
+        <Fire style="position: absolute; left: -30px; top: -170px; transform: scale(0.5)" />
         {{ text }}
     </div>
 </template>
@@ -8,6 +11,7 @@
 import { computed, ref, onMounted } from 'vue';
 import Fire from './Fire.vue';
 import { getRandom } from '../../utils/random';
+import LaternVue from './Latern.vue';
 
 const emit = defineEmits(['removeFire']);
 // 接收props
@@ -31,7 +35,7 @@ const options = ref({
     x: 0,
     x_s: getRandom(0.8, 0.1, false) * (left > 50 ? -1 : 1),
     y: 0,
-    y_s: getRandom(2, 0.1, false)
+    y_s: getRandom(2, 0.8, false)
 });
 const style = computed(() => {
     return {
@@ -43,13 +47,13 @@ const style = computed(() => {
 });
 const moveFire = () => {
     if (options.value.y > top) {
-        cancelAnimationFrame(reqId);
+        // cancelAnimationFrame(reqId);
         // 重新从底部升起
-        // options.value.x = 0;
-        // options.value.y = 0;
+        options.value.x = 0;
+        options.value.y = 0;
         // 移除当前信息
-        emit('removeFire', props.msg.time);
-        return
+        // emit('removeFire', props.msg.time);
+        return;
     }
     options.value.y += options.value.y_s;
     options.value.x += options.value.x_s;
@@ -73,5 +77,11 @@ onMounted(() => {
     background: rgba(94, 30, 42, 0.6);
     color: #fff;
     z-index: 10;
+    .sky-latern {
+        position: absolute;
+        left: -38px;
+        top: -145px;
+        z-index: 10;
+    }
 }
 </style>
