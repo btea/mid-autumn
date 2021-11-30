@@ -4,7 +4,9 @@
             <LaternVue />
         </div>
         <Fire style="position: absolute; left: -30px; top: -170px; transform: scale(0.5)" />
-        {{ text }}
+        <div class="text">
+            {{ text }}
+        </div>
     </div>
 </template>
 <script setup lang="ts">
@@ -77,6 +79,9 @@ onMounted(() => {
     background: rgba(94, 30, 42, 0.6);
     color: #fff;
     z-index: 10;
+    .text {
+        writing-mode: vertical-lr;
+    }
     .sky-latern {
         position: absolute;
         left: -38px;
