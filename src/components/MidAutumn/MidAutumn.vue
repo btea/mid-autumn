@@ -71,7 +71,7 @@ onMounted(() => {
 .mid-autumn {
     position: absolute;
     top: 100%;
-    width: 40px;
+    // width: 40px;
     // height: 200px;
     font-size: 18px;
     padding: 20px 10px;
