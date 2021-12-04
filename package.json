@@ -18,6 +18,7 @@
     },
     "homepage": "https://github.com/btea/mid-autumn#readme",
     "dependencies": {
+        "@btea/utils": "^0.0.13",
         "vue": "^3.2.21"
     },
     "devDependencies": {
