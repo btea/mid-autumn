@@ -43,7 +43,8 @@ const style = computed(() => {
     return {
         left: left + '%',
         opacity: options.value.opacity,
-        transform: `translate(${-options.value.x}px, ${-options.value.y}px)`
+        transform: `translateY(-${options.value.y}px)`
+        // transform: `translate(${-options.value.x}px, ${-options.value.y}px)`
         // zIndex: getRandom(1000, 1, true)
     };
 });
@@ -63,14 +64,18 @@ const moveFire = () => {
 };
 let reqId: number;
 onMounted(() => {
-    options.value.opacity = 1;
-    reqId = requestAnimationFrame(moveFire);
+    // reqId = requestAnimationFrame(moveFire);
+    setTimeout(() => {
+        options.value.opacity = 1;
+        options.value.y = getRandom(600, 400, true);
+    }, 500);
 });
 </script>
 <style lang="less" scoped>
 .mid-autumn {
     position: absolute;
     top: 100%;
+    transition: all 0.6s;
     // width: 40px;
     // height: 200px;
     font-size: 18px;
