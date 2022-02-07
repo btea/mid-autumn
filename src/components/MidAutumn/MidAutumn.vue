@@ -10,7 +10,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue';
+import { computed, reactive, onMounted } from 'vue';
 import Fire from './Fire.vue';
 import { getRandom } from '../../utils/random';
 import LaternVue from './Latern.vue';
@@ -28,11 +28,12 @@ const text = props.msg.msg;
  * []灯默认的不透明度为0，随着升高逐渐清晰可见
  *
  */
-const left = getRandom(100, 0, true);
+const left = getRandom(100, 0, false);
 const top = window.innerHeight + 300;
+const time = getRandom(10, 20, true);
 // const top = 100;
 
-const options = ref({
+const options = reactive({
     opacity: 0,
     x: 0,
     x_s: getRandom(0.8, 0.1, false) * (left > 50 ? -1 : 1),
@@ -42,33 +43,36 @@ const options = ref({
 const style = computed(() => {
     return {
         left: left + '%',
-        opacity: options.value.opacity,
-        transform: `translateY(-${options.value.y}px)`
+        opacity: options.opacity,
+        transform: `translateY(-${options.y}px)`
         // transform: `translate(${-options.value.x}px, ${-options.value.y}px)`
         // zIndex: getRandom(1000, 1, true)
     };
 });
 const moveFire = () => {
-    if (options.value.y > top) {
+    if (options.y > top) {
         // cancelAnimationFrame(reqId);
         // 重新从底部升起
-        options.value.x = 0;
-        options.value.y = 0;
+        options.x = 0;
+        options.y = 0;
         // 移除当前信息
         // emit('removeFire', props.msg.time);
         return;
     }
-    options.value.y += options.value.y_s;
-    options.value.x += options.value.x_s;
+    options.y += options.y_s;
+    options.x += options.x_s;
     reqId = requestAnimationFrame(moveFire);
 };
 let reqId: number;
 onMounted(() => {
     // reqId = requestAnimationFrame(moveFire);
     setTimeout(() => {
-        options.value.opacity = 1;
-        options.value.y = getRandom(600, 400, true);
+        options.opacity = 1;
+        options.y = getRandom(600, 400, true);
     }, 500);
+    setTimeout(() => {
+        emit('removeFire', props.msg.time);
+    }, time * 1000);
 });
 </script>
 <style lang="less" scoped>

@@ -10,14 +10,14 @@
 import { ref } from 'vue';
 import SendIcon from './SendIcon.vue';
 
-const emit = defineEmits(['sendMsg'])
+const emit = defineEmits(['sendMsg']);
 const word = ref('');
 const sendMsg = () => {
     if (!word.value) {
         console.log('%c请先输入你的愿望！', 'color: rgba(102, 204, 255, .3)');
         return;
     }
-    emit('sendMsg', word.value)
+    emit('sendMsg', word.value);
 };
 </script>
 <style lang="less" scoped>
@@ -27,7 +27,7 @@ const sendMsg = () => {
     bottom: 30px;
     height: 35px;
     opacity: 0;
-    transition: opacity .5s;
+    transition: opacity 0.5s;
     transform: translateX(-50%);
     .xinyuan {
         outline: none;
@@ -38,6 +38,7 @@ const sendMsg = () => {
         padding: 0 40px 0 10px;
         background: rgba(102, 204, 255, 0.5);
         opacity: 0.3;
+        color: #fff;
         &:focus {
             box-shadow: 0px 0px 10px rgba(102, 204, 255, 0.5);
             border-color: transparent;
