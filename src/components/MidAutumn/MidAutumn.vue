@@ -28,9 +28,9 @@ const text = props.msg.msg;
  * []灯默认的不透明度为0，随着升高逐渐清晰可见
  *
  */
-const left = getRandom(100, 0, false);
+const left = getRandom(90, 10, false);
 const top = window.innerHeight + 300;
-const time = getRandom(10, 20, true);
+const time = getRandom(5, 10, true);
 // const top = 100;
 
 const options = reactive({
@@ -68,8 +68,8 @@ onMounted(() => {
     // reqId = requestAnimationFrame(moveFire);
     setTimeout(() => {
         options.opacity = 1;
-        options.y = getRandom(600, 400, true);
-    }, 500);
+        options.y = getRandom(800, 500, true);
+    }, 200);
     setTimeout(() => {
         emit('removeFire', props.msg.time);
     }, time * 1000);
@@ -90,6 +90,7 @@ onMounted(() => {
     z-index: 10;
     .text {
         writing-mode: vertical-lr;
+        letter-spacing: 5px;
     }
     .sky-latern {
         position: absolute;

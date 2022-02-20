@@ -18,6 +18,7 @@ const sendMsg = () => {
         return;
     }
     emit('sendMsg', word.value);
+    word.value = '';
 };
 </script>
 <style lang="less" scoped>
