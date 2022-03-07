@@ -38,13 +38,15 @@ const options = reactive({
     x: 0,
     x_s: getRandom(0.8, 0.1, false) * (left > 50 ? -1 : 1),
     y: 0,
-    y_s: getRandom(2, 0.8, false)
+    y_s: getRandom(2, 0.8, false),
+    s: 1
 });
 const style = computed(() => {
     return {
         left: left + '%',
         opacity: options.opacity,
-        transform: `translateY(-${options.y}px)`
+        transform: `translateY(-${options.y}px) scale(${options.s})`
+
         // transform: `translate(${-options.value.x}px, ${-options.value.y}px)`
         // zIndex: getRandom(1000, 1, true)
     };
@@ -69,10 +71,11 @@ onMounted(() => {
     setTimeout(() => {
         options.opacity = 1;
         options.y = getRandom(800, 500, true);
+        options.s = getRandom(1, 0.4, false);
     }, 200);
-    setTimeout(() => {
-        emit('removeFire', props.msg.time);
-    }, time * 1000);
+    // setTimeout(() => {
+    //     emit('removeFire', props.msg.time);
+    // }, time * 1000);
 });
 </script>
 <style lang="less" scoped>
