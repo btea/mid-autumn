@@ -28,10 +28,11 @@ const text = props.msg.msg;
  * []灯默认的不透明度为0，随着升高逐渐清晰可见
  *
  */
-const left = getRandom(90, 10, false);
+const height = window.innerHeight;
+const width = window.innerWidth;
+const left = getRandom(50, width - 50, false);
 const top = window.innerHeight + 300;
 const time = getRandom(5, 10, true);
-// const top = 100;
 
 const options = reactive({
     opacity: 0,
@@ -43,12 +44,9 @@ const options = reactive({
 });
 const style = computed(() => {
     return {
-        left: left + '%',
+        left: `${left}px`,
         opacity: options.opacity,
-        transform: `translateY(-${options.y}px) scale(${options.s})`
-
-        // transform: `translate(${-options.value.x}px, ${-options.value.y}px)`
-        // zIndex: getRandom(1000, 1, true)
+        transform: `translateY(-${options.y}px)`
     };
 });
 const moveFire = () => {
@@ -67,15 +65,18 @@ const moveFire = () => {
 };
 let reqId: number;
 onMounted(() => {
-    // reqId = requestAnimationFrame(moveFire);
     setTimeout(() => {
         options.opacity = 1;
         options.y = getRandom(800, 500, true);
         options.s = getRandom(1, 0.4, false);
     }, 200);
-    // setTimeout(() => {
-    //     emit('removeFire', props.msg.time);
-    // }, time * 1000);
+    setTimeout(() => {
+        options.opacity = 0;
+        options.y = height + 200;
+        setTimeout(() => {
+            emit('removeFire', props.msg.time);
+        }, 300);
+    }, time * 1000);
 });
 </script>
 <style lang="less" scoped>

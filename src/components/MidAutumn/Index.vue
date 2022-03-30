@@ -13,22 +13,6 @@ import Moon from './Moon.vue';
 import MidAutumn from './MidAutumn.vue';
 import SendMsg from './SendMsg.vue';
 
-const wishes = [
-    '新年快乐！',
-    '元宵节快乐！',
-    '中秋节快乐！',
-    '幸福健康快乐！',
-    '新年快乐！',
-    '元宵节快乐！',
-    '中秋节快乐！',
-    '幸福健康快乐！'
-];
-let i = 0;
-const timer = setInterval(() => {
-    if (i >= wishes.length - 1) clearInterval(timer);
-    addMsg(wishes[i]);
-    i++;
-}, 500);
 // 信息列表
 const msgList = ref<{ msg: String; time: Number }[]>([]);
 const addMsg = (msg: string) => {
@@ -53,8 +37,6 @@ const judgePosition = (e) => {
 };
 
 const removeFire = (time: number) => {
-    console.log(time);
-    console.log(msgList.value);
     msgList.value = msgList.value.filter((item) => item.time !== time);
 };
 
