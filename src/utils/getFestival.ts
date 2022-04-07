@@ -9,10 +9,15 @@ export function getFestival(): String {
     if (date === '05-05') {
         return 'DuanWu';
     }
+    if (date === '03-05') {
+        return 'JingZhe';
+    }
     return 'CustomDay';
 }
 
 function getDateStr(): String {
     const date = new Date();
-    return (date.getMonth() + 1 + '').padStart(2, '0') + '-' + (date.getDate() + '').padStart(2, '0');
+    return (
+        (date.getMonth() + 1 + '').padStart(2, '0') + '-' + (date.getDate() + '').padStart(2, '0')
+    );
 }
