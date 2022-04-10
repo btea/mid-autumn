@@ -19,6 +19,8 @@ const ctx = computed(() => light.value.getContext('2d'));
 const { innerWidth: iw, innerHeight: ih, devicePixelRatio: dp } = window;
 let x = Math.trunc(getRan(iw - 200, 200));
 const initAngel = Math.PI / 2;
+let currentPoint: Point;
+let interval = 0;
 
 function initCanvas(el: HTMLCanvasElement) {
     el.width = iw * dp;
@@ -38,45 +40,42 @@ function init(p0: Point) {
     // c.shadowOffsetY = 5;
     c.shadowBlur = 10;
     c.moveTo(p0.x, p0.y);
-    const start = { x, y: 50 };
-    lineTo(start);
-    allGen(start);
+    currentPoint = { x, y: 50 };
+    lineTo();
+    allGen();
 }
 
 // 根据一个点计算下一个点信息
 function calcPoint(light: LightLine) {
     const { start, length, angel } = light;
-    const end = {
+    currentPoint = {
         x: start.x + length * Math.cos(angel),
         y: start.y + length * Math.sin(angel)
     };
-    lineTo(end);
-    return end;
+    lineTo();
 }
 
-function allGen(p: Point) {
-    if (p.y >= ih) {
-        // setTimeout(() => {
-        //     x = Math.trunc(getRan(iw - 200, 200));
-        //     init({ x, y: 0 });
-        // }, 5000);
+function allGen() {
+    interval++;
+    if (currentPoint.y >= ih) {
         return;
     }
-    const point = calcPoint({
-        start: p,
-        length: Math.trunc(getRan(50, 30)),
-        // angel: initAngel + (Math.random() > 0.5 ? 0.2 : -0.2)
-        angel: initAngel + getRan(0.5, -0.5)
-    });
-    allGen(point);
+    if (!(interval % 3)) {
+        calcPoint({
+            start: currentPoint,
+            length: Math.trunc(getRan(50, 30)),
+            // angel: initAngel + (Math.random() > 0.5 ? 0.2 : -0.2)
+            angel: initAngel + getRan(0.5, -0.5)
+        });
+    }
+    requestAnimationFrame(allGen);
 }
+requestAnimationFrame(allGen);
 
-function lineTo(p: Point) {
-    // ctx.value.restore();
-    // ctx.value.lineWidth = Math.trunc(getRan(10, 2));
+function lineTo() {
+    const p = currentPoint;
     ctx.value.lineTo(p.x * dp, p.y * dp);
     ctx.value.stroke();
-    // ctx.value.save();
 }
 
 onMounted(() => {
@@ -87,20 +86,34 @@ onMounted(() => {
 <template>
     <div class="jing-zhe">
         <canvas class="light" ref="light"></canvas>
-        <h1>惊蛰 闪电劈桃木，形成神器惊蛰 神荼 安岩</h1>
+        <div class="text">惊蛰</div>
+        <!-- <h1>惊蛰 闪电劈桃木，形成神器惊蛰 神荼 安岩</h1> -->
     </div>
 </template>
 <style lang="less" scoped>
 .jing-zhe {
     height: 100%;
     overflow: hidden;
+    background: #000;
     color: #fff;
-    background: url('../../assets/img/bg.webp');
     background-repeat: no-repeat;
     background-size: cover;
     .light {
         width: 100%;
         height: 100%;
+    }
+    .text {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        z-index: 5;
+        font-family: '楷体';
+        font-size: 66px;
+        display: flex;
+        flex-direction: column;
+        writing-mode: tb;
+        letter-spacing: 25px;
+        text-shadow: 0 0 10px;
     }
 }
 </style>
