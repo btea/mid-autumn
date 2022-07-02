@@ -1,8 +1,8 @@
-import vuePlugin from '@vitejs/plugin-vue';
+import vuePlugin from '@vitejs/plugin-vue'
 
 export default {
-    server: {
-        host: true
-    },
-    plugins: [vuePlugin()]
-};
+  server: {
+    host: true
+  },
+  plugins: [vuePlugin()]
+}

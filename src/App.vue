@@ -1,11 +1,11 @@
 <template>
-    <Panel></Panel>
+  <Panel></Panel>
 </template>
 <script lang="ts" setup>
 import Panel from './components/Panel.vue'
 </script>
 <style lang="less" scoped>
-h1{
-    color: #6cf;
+h1 {
+  color: #6cf;
 }
 </style>
