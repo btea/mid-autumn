@@ -49,7 +49,7 @@ export class Fire {
         this.ratio = ratio;
         this.canvas = canvas;
         Object.assign(canvas.style, style);
-        this.ctx = this.canvas.getContext('2d');
+        this.ctx = this.canvas.getContext('2d')!;
     }
     createDots() {
         const { width, height, total } = this;

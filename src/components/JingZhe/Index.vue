@@ -15,7 +15,7 @@ const getRan = (max: number, min: number) => {
     return Math.random() * (max - min) + min;
 };
 const light = ref<HTMLCanvasElement>();
-const ctx = computed(() => light.value.getContext('2d'));
+const ctx = computed(() => light.value?.getContext('2d'));
 const { innerWidth: iw, innerHeight: ih, devicePixelRatio: dp } = window;
 let x = Math.trunc(getRan(iw - 200, 200));
 const initAngel = Math.PI / 2;
@@ -28,7 +28,7 @@ function initCanvas(el: HTMLCanvasElement) {
 }
 
 function init(p0: Point) {
-    const c = ctx.value;
+    const c = ctx.value!;
     c.clearRect(0, 0, iw, ih);
     c.beginPath();
     c.strokeStyle = '#fff';
@@ -74,12 +74,12 @@ requestAnimationFrame(allGen);
 
 function lineTo() {
     const p = currentPoint;
-    ctx.value.lineTo(p.x * dp, p.y * dp);
-    ctx.value.stroke();
+    ctx.value?.lineTo(p.x * dp, p.y * dp);
+    ctx.value?.stroke();
 }
 
 onMounted(() => {
-    initCanvas(light.value);
+    initCanvas(light.value!);
     init({ x, y: 0 });
 });
 </script>
