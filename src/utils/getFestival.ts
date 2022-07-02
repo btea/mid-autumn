@@ -1,23 +1,21 @@
+import { calendar } from './calendar'
+
+const festivalList: Record<string, string> = {
+    '01-01': 'NewYear',
+    '03-05': 'JingZhe',
+    '05-05': 'DuanWu',
+    '08-15': 'MidAutumn',
+}
 export function getFestival(): String {
     const date = getDateStr();
-    if (date === '08-15') {
-        return 'MidAutumn';
-    }
-    if (date === '01-01') {
-        return 'NewYear';
-    }
-    if (date === '05-05') {
-        return 'DuanWu';
-    }
-    if (date === '03-05') {
-        return 'JingZhe';
-    }
-    return 'CustomDay';
+    return festivalList[date] || 'CustomDay';
 }
 
-function getDateStr(): String {
+function getDateStr() {
     const date = new Date();
+    // @ts-ignore
+    const info: Record<string, string | number> = calendar.solar2lunar(date.getFullYear(), date.getMonth(), date.getDate())
     return (
-        (date.getMonth() + 1 + '').padStart(2, '0') + '-' + (date.getDate() + '').padStart(2, '0')
+        (info.cYear + '').padStart(2, '0') + '-' + (info.cMonth + '').padStart(2, '0')
     );
 }
