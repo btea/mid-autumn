@@ -1,5 +1,3 @@
-import { calendar } from './calendar'
-
 const festivalList: Record<string, string> = {
   '01-01': 'NewYear',
   '03-05': 'JingZhe',
@@ -13,7 +11,5 @@ export function getFestival(): string {
 
 function getDateStr() {
   const date = new Date()
-  // @ts-ignore
-  const info: Record<string, string | number> = calendar.solar2lunar(date.getFullYear(), date.getMonth(), date.getDate())
-  return (info.cYear + '').padStart(2, '0') + '-' + (info.cMonth + '').padStart(2, '0')
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
 }
