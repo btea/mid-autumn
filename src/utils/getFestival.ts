@@ -5,7 +5,11 @@ const festivalList: Record<string, string> = {
   '2022-03-05': 'JingZhe',
   '2022-06-03': 'DuanWu',
   '2022-09-10': 'MidAutumn',
-  '2022-10-01': 'GuoQin'
+  '2022-10-01': 'GuoQin',
+  '2023-01-01': 'YuanDan',
+  '2023-01-21': 'ChuXi',
+  '2023-01-22': 'ChunJie',
+  '2023-02-05': 'YuanXiao'
 }
 export function getFestival(): string {
   const date = getDateStr()
