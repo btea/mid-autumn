@@ -10,7 +10,7 @@ const play = () => {
   <div class="custom-day-box" @click="play">
     <video src="../../assets/yuyu.mp4" loop ref="video"></video>
     <div class="con">
-      <div>天空高远，大风吟唱！</div>
+      <div class="text">天空高远，大风吟唱！</div>
     </div>
   </div>
 </template>
@@ -27,6 +27,17 @@ const play = () => {
     bottom: 0;
     text-align: center;
     color: #fff;
+  }
+  .text {
+    font-size: 30px;
+    color: #39cf4273;
+    position: absolute;
+    left: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    writing-mode: tb;
+    letter-spacing: 5px;
   }
 }
 </style>
