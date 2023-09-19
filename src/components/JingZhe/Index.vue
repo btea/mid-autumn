@@ -90,7 +90,7 @@ onMounted(() => {
     <!-- <h1>惊蛰 闪电劈桃木，形成神器惊蛰 神荼 安岩</h1> -->
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .jing-zhe {
   height: 100%;
   overflow: hidden;

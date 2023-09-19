@@ -14,7 +14,7 @@ onMounted(() => {
   })
 })
 </script>
-<style scoped lang="less">
+<style scoped lang="scss">
 .new-year-box {
   height: 100%;
   text-align: center;

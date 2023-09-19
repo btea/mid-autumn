@@ -1,19 +1,18 @@
+import * as lunisolar from 'lunisolar'
+
 const festivalList: Record<string, string> = {
-  '2022-01-01': 'YuanDan',
-  '2022-01-31': 'ChuXi',
-  '2022-02-01': 'ChunJie',
+  '01-31': 'ChuXi',
+  '01-01': 'ChunJie',
+  '01-15': 'YuanXiao',
   '2022-03-05': 'JingZhe',
   '2022-06-03': 'DuanWu',
-  '2022-09-10': 'MidAutumn',
-  '2022-10-01': 'GuoQin',
-  '2023-01-01': 'YuanDan',
-  '2023-01-21': 'ChuXi',
-  '2023-01-22': 'ChunJie',
-  '2023-02-05': 'YuanXiao'
+  '08-15': 'MidAutumn'
 }
 export function getFestival(): string {
   const date = getDateStr()
-  return festivalList[date] || 'CustomDay'
+  const lunar = lunisolar.default(date).lunar
+  const lunarDate = `${String(lunar.month).padStart(2, '0')}-${String(lunar.day).padStart(2, '0')}`
+  return festivalList[date] || festivalList[lunarDate] || 'CustomDay'
 }
 
 function getDateStr() {

@@ -24,7 +24,7 @@ const addMsg = (msg: string) => {
 }
 
 // const msg = ref(null);
-const con = ref(null)
+const con = ref<HTMLElement>()
 let msgBox: HTMLElement
 let msgBoxInfo
 const judgePosition = e => {
@@ -43,12 +43,12 @@ const removeFire = (time: number) => {
 onMounted(() => {
   // console.log(msg.value); // 拿不到组件的引用
   // console.log(con.value); // 能拿到html标签的引用
-  msgBox = con.value.querySelector('.send-msg-box')
+  msgBox = con.value!.querySelector('.send-msg-box')!
   msgBoxInfo = msgBox.getBoundingClientRect()
   // console.log(msgBoxInfo);
 })
 </script>
-<style scoped lang="less">
+<style scoped lang="scss">
 .mid-autumn-box {
   height: 100%;
   overflow: hidden;

@@ -17,7 +17,7 @@ const points = new Array(100).fill(1).map(item => {
   return obj
 })
 </script>
-<style lang="less">
+<style lang="scss">
 .fire {
   width: 100px;
   height: 200px;

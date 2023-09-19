@@ -14,7 +14,7 @@ const play = () => {
     </div>
   </div>
 </template>
-<style scoped lang="less">
+<style scoped lang="scss">
 .custom-day-box {
   height: 100%;
   overflow: hidden;

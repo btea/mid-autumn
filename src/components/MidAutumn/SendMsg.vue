@@ -21,7 +21,7 @@ const sendMsg = () => {
   word.value = ''
 }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .send-msg-box {
   position: fixed;
   left: 50%;

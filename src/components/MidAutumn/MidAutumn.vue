@@ -79,7 +79,7 @@ onMounted(() => {
   }, time * 1000)
 })
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .mid-autumn {
   position: absolute;
   top: 100%;

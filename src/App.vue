@@ -4,7 +4,7 @@
 <script lang="ts" setup>
 import Panel from './components/Panel.vue'
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 h1 {
   color: #6cf;
 }

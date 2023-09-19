@@ -3,7 +3,7 @@
     <div class="fog"></div>
   </div>
 </template>
-<style lang="less">
+<style lang="scss">
 .moon {
   position: absolute;
   left: 50%;
