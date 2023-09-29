@@ -1,5 +1,7 @@
-import { randomNum } from '@btea/utils'
-
+const randomNum = (max: number, min: number, isInt = false) => {
+  const num = Math.random() * (max - min) + min
+  return isInt ? Math.floor(num) : num
+}
 interface FireOpt {
   width: number
   height: number

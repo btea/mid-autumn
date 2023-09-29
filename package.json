@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/btea/mid-autumn#readme",
   "dependencies": {
-    "@btea/utils": "^0.0.24",
     "lint-staged": "^14.0.1",
     "lunisolar": "^2.2.3",
     "pretty-quick": "^3.1.3",

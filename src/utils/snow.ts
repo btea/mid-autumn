@@ -1,4 +1,7 @@
-import { randomNum } from '@btea/utils'
+const randomNum = (max: number, min: number, isInt = false) => {
+  const num = Math.random() * (max - min) + min
+  return isInt ? Math.floor(num) : num
+}
 
 interface SnowOpt {
   total: number
@@ -69,7 +72,7 @@ export class Snow {
     Object.assign(canvas.style, style)
     this.el.appendChild(canvas)
     this.canvas = canvas
-    this.ctx = this.canvas.getContext('2d')
+    this.ctx = this.canvas.getContext('2d')!
     this.width = parseInt(width)
     this.height = parseInt(height)
   }
