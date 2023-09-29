@@ -8,9 +8,9 @@ import { defineAsyncComponent } from 'vue'
 import { getFestival } from '../utils/getFestival'
 const name = getFestival()
 
-// const asyncCom = defineAsyncComponent(() => {
-//   return import(`./${name}/Index.vue`)
-// })
+const asyncCom = defineAsyncComponent(() => {
+  return import(`./${name}/Index.vue`)
+})
 </script>
 <style lang="scss" scoped>
 .container {
